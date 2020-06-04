@@ -17,8 +17,20 @@
  */
 String pipelineVersion = "master"
 
-node {
-    deleteDir()
-    sh "git clone --depth 1 https://github.com/SAP/cloud-s4-sdk-pipeline.git -b ${pipelineVersion} pipelines"
-    load './pipelines/s4sdk-pipeline.groovy'
+@Library('piper-lib-os') _
+
+node(){
+  stage('Prepare')   {
+      deleteDir()
+      checkout scm
+      setupCommonPipelineEnvironment script:this
+  }
+
+  stage('Build')   {
+      mtaBuild script:this
+  }
+
+  stage('Deploy')   {
+      cloudFoundryDeploy script:this, deployTool:'mtaDeployPlugin'
+  }
 }

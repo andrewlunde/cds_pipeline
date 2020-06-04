@@ -18,14 +18,20 @@
 ###
 
 
-
 ### General project setup
 general:
 
 
 ### Step-specific configuration
 steps:
-
+  mtaBuild:
+    buildTarget: 'CF'
+  cloudFoundryDeploy:
+    cloudFoundry:
+      credentialsId: 'sap-cf-andrew-lunde'
+      apiEndpoint: 'https://api.cf.us10.hana.ondemand.com'
+      org: 'ConcileTime'
+      space: 'dev'
 
 ### Stage-specific configuration
 stages:
