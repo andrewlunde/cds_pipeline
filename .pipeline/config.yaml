@@ -17,14 +17,40 @@
 # This is a YAML-file. YAML is a indentation-sensitive file format. Please make sure to properly indent changes to it.
 ###
 
-# https://sap.github.io/jenkins-library/
+
+
+### General project setup
 general:
-  gitSshKeyCredentialsId: 'GITHUBALUNDESAP'
-  collectTelemetryData: false
+
+
+### Step-specific configuration
 steps:
-  setupCommonPipelineEnvironment:
-    collectTelemetryData: true
-  mtaBuild:
-    buildTarget: 'CF'
-    defaultNpmRegistry: 'https://registry.npmjs.org/'
+
+
+### Stage-specific configuration
+stages:
+
+  # This exclude is required for the example project to be successful in the pipeline
+  # Remove it when you have added your first test
+  s4SdkQualityChecks:
+    jacocoExcludes:
+      - '**/OrdersService.class'
+
+#  integrationTests:
+#    credentials:
+#      - alias: 'mySystemAlias'
+#        credentialId: 'mySystemCredentialsId'
+
+#  s4SdkQualityChecks:
+#    nonErpDestinations:
+#      - 'myCustomDestination'
+
+#  productionDeployment:
+#    cfTargets:
+#      - org: 'myOrg'
+#        space: 'mySpace'
+#        apiEndpoint: 'https://'
+#        appName: 'myAppName'
+#        manifest: 'manifest.yml'
+#        credentialsId: 'myDeploymentCredentialsId'
 
