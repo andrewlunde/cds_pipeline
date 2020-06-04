@@ -21,16 +21,16 @@ String pipelineVersion = "master"
 
 node(){
   stage('Prepare')   {
-      deleteDir()
-      checkout scm
-      setupCommonPipelineEnvironment script:this
+#      deleteDir()
+#      checkout scm
+#      setupCommonPipelineEnvironment script:this
   }
 
   stage('Build')   {
-      mtaBuild script:this
+#      mtaBuild script:this
   }
 
   stage('Deploy')   {
-      cloudFoundryDeploy script:this, deployTool:'mtaDeployPlugin'
+#      cloudFoundryDeploy script:this, deployTool:'mtaDeployPlugin'
   }
 }

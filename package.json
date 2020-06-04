@@ -10,6 +10,7 @@
     "express": "^4"
   },
   "scripts": {
+    "ci-build": "cds build/all --clean"
     "start": "npx cds run"
   }
 }
